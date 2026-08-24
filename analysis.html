@@ -180,6 +180,138 @@ ul.task-list li input[type="checkbox"] {
 3 Longest top-10 chart run Creed  High…         7                 46          57</code></pre>
 </div>
 </div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "artist.familiarity"             "artist.hotttnesss"             
+ [3] "artist.id"                      "artist.latitude"               
+ [5] "artist.location"                "artist.longitude"              
+ [7] "artist.name"                    "artist.similar"                
+ [9] "artist.terms"                   "artist.terms_freq"             
+[11] "release.id"                     "release.name"                  
+[13] "song.artist_mbtags"             "song.artist_mbtags_count"      
+[15] "song.bars_confidence"           "song.bars_start"               
+[17] "song.beats_confidence"          "song.beats_start"              
+[19] "song.duration"                  "song.end_of_fade_in"           
+[21] "song.hotttnesss"                "song.id"                       
+[23] "song.key"                       "song.key_confidence"           
+[25] "song.loudness"                  "song.mode"                     
+[27] "song.mode_confidence"           "song.start_of_fade_out"        
+[29] "song.tatums_confidence"         "song.tatums_start"             
+[31] "song.tempo"                     "song.time_signature"           
+[33] "song.time_signature_confidence" "song.title"                    
+[35] "song.year"                     </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 10,000
+Columns: 10
+$ artist.familiarity &lt;dbl&gt; 0.58179377, 0.63063004, 0.48735679, 0.63038233, 0.6…
+$ artist.hotttnesss  &lt;dbl&gt; 0.4019975, 0.4174996, 0.3434284, 0.4542312, 0.40172…
+$ artist.id          &lt;chr&gt; "ARD7TVE1187B99BFB1", "ARMJAGH1187FB546F3", "ARKRRT…
+$ artist.latitude    &lt;dbl&gt; 0.00000, 35.14968, 0.00000, 0.00000, 0.00000, 0.000…
+$ artist.location    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ artist.longitude   &lt;dbl&gt; 0.00000, -90.04892, 0.00000, 0.00000, 0.00000, 0.00…
+$ artist.name        &lt;chr&gt; "Casual", "The Box Tops", "Sonora Santanera", "Adam…
+$ artist.similar     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ artist.terms       &lt;chr&gt; "hip hop", "blue-eyed soul", "salsa", "pop rock", "…
+$ artist.terms_freq  &lt;dbl&gt; 1.0000000, 1.0000000, 1.0000000, 0.9885839, 0.88728…</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 9
+  artist.name      artist.location artist.latitude artist.longitude artist.terms
+  &lt;chr&gt;                      &lt;dbl&gt;           &lt;dbl&gt;            &lt;dbl&gt; &lt;chr&gt;       
+1 Casual                         0             0                0   hip hop     
+2 The Box Tops                   0            35.1            -90.0 blue-eyed s…
+3 Sonora Santanera               0             0                0   salsa       
+4 Adam Ant                       0             0                0   pop rock    
+5 Gob                            0             0                0   pop punk    
+6 Jeff And Sheri …               0             0                0   southern go…
+7 Rated R                        0             0                0   breakbeat   
+8 Tweeterfriendly…               0             0                0   post-hardco…
+# ℹ 4 more variables: artist.familiarity &lt;dbl&gt;, artist.hotttnesss &lt;dbl&gt;,
+#   song.title &lt;dbl&gt;, song.year &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p><code>artist.familiarity</code> measures how familiar the artist is to listeners, on a scale from 0 to 1.</p>
+<p><code>artist.hotttnesss</code> measures the artist’s popularity when the dataset was downloaded in December 2010, on a scale from 0 to 1.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Expected 2 pieces. Additional pieces discarded in 8 rows [2, 4, 7, 9, 12, 14,
+17, 19].</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 3
+   variable           statistic    value
+   &lt;chr&gt;              &lt;chr&gt;        &lt;dbl&gt;
+ 1 artist.familiarity minimum      0    
+ 2 artist.familiarity lower        0.468
+ 3 artist.familiarity median       0.564
+ 4 artist.familiarity upper        0.668
+ 5 artist.familiarity maximum      1    
+ 6 artist.hotttnesss  minimum      0    
+ 7 artist.hotttnesss  lower        0.325
+ 8 artist.hotttnesss  median       0.381
+ 9 artist.hotttnesss  upper        0.454
+10 artist.hotttnesss  maximum      1.08 
+11 song.year          minimum      0    
+12 song.year          lower        0    
+13 song.year          median       0    
+14 song.year          upper     2000    
+15 song.year          maximum   2010    
+16 song.tempo         minimum      0    
+17 song.tempo         lower       97.0  
+18 song.tempo         median     120.   
+19 song.tempo         upper      144.   
+20 song.tempo         maximum    263.   </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  column             placeholder_rows
+  &lt;chr&gt;                         &lt;int&gt;
+1 artist.location                9999
+2 release.name                   9989
+3 song.title                     9992
+4 song.year                      5320
+5 artist.familiarity               24
+6 artist.hotttnesss               496</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  coordinate_status       artists
+  &lt;chr&gt;                     &lt;int&gt;
+1 Placeholder coordinates    2493
+2 Usable coordinates         1418</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: `borders()` was deprecated in ggplot2 4.0.0.
+ℹ Please use `annotation_borders()` instead.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 </main>
 <!-- /main column -->

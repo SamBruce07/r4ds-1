@@ -1,18 +1,17 @@
----
-title: "Analyzing Music Data"
-format: html
-author: Sam Bruce
-execute:
-  echo: false
----
-
-```{r}
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #| message: false
 library(tidyverse)
-library(maps)
-```
-
-```{r}
+#
+#
+#
 billboard |>
   select(artist, track, date.entered, wk1:wk4)
 
@@ -58,15 +57,14 @@ billboard_long <- billboard |>
       name = "Notable songs"
     ) +
   scale_y_reverse() +
-  labs(x = "Week", y = "Ranking") +
-  theme_minimal(base_size = 11)
-```
-
-```{r}
+  labs(x = "Week", y = "Ranking")
+#
+#
+#
 summary(billboard$date.entered)
-```
-
-```{r}
+#
+#
+#
 ranking_columns <- c("wk1", "wk4", "wk10", "wk20", "wk40", "wk76")
 
 billboard |>
@@ -82,9 +80,9 @@ billboard |>
     names_to = c("week", ".value"),
     names_sep = "_"
   )
-```
-
-```{r}
+#
+#
+#
 rank_comparison <- billboard |>
   mutate(
     result = case_when(
@@ -103,9 +101,9 @@ median_change <- rank_comparison |>
   summarise(median_rank_change = median(wk1 - wk6))
 
 median_change
-```
-
-```{r}
+#
+#
+#
 billboard_long |>
   group_by(artist, track, date.entered) |>
   summarise(
@@ -113,9 +111,9 @@ billboard_long |>
     .groups = "drop"
   ) |>
   count(reentered, name = "songs")
-```
-
-```{r}
+#
+#
+#
 song_summary <- billboard_long |>
   group_by(artist, track, date.entered) |>
   summarise(
@@ -147,24 +145,24 @@ notable_songs <- bind_rows(
   select(notable, artist, track, best_rank, first_week_at_best, total_weeks)
 
 notable_songs
-```
-
-```{r}
+#
+#
+#
 #| cache: true
 music <- read_csv("data/music.csv", show_col_types = FALSE)
-```
-
-```{r}
+#
+#
+#
 names(music)
-```
-
-```{r}
+#
+#
+#
 music |>
   select(starts_with("artist.")) |>
   glimpse()
-```
-
-```{r}
+#
+#
+#
 music |>
   select(
     artist.name,
@@ -178,118 +176,7 @@ music |>
     song.year
   ) |>
   slice_head(n = 8)
-```
-
-`artist.familiarity` measures how familiar the artist is to listeners, on a scale from 0 to 1.
-
-`artist.hotttnesss` measures the artist's popularity when the dataset was downloaded in December 2010, on a scale from 0 to 1.
-
-```{r}
-music |>
-  summarise(
-    across(
-      c(artist.familiarity, artist.hotttnesss, song.year, song.tempo),
-      list(
-        minimum = ~ min(.x, na.rm = TRUE),
-        lower_quartile = ~ quantile(.x, 0.25, na.rm = TRUE, names = FALSE),
-        median = ~ median(.x, na.rm = TRUE),
-        upper_quartile = ~ quantile(.x, 0.75, na.rm = TRUE, names = FALSE),
-        maximum = ~ max(.x, na.rm = TRUE)
-      ),
-      .names = "{.col}_{.fn}"
-    )
-  ) |>
-  pivot_longer(
-    everything(),
-    names_to = c("variable", "statistic"),
-    names_sep = "_",
-    values_to = "value"
-  )
-```
-
-```{r}
-song_year_data <- music |>
-  filter(song.year != 0, !is.na(song.year))
-
-ggplot(song_year_data, aes(x = song.year)) +
-  geom_histogram(binwidth = 5, boundary = 0) +
-  labs(
-    x = "Song year",
-    y = "Number of songs",
-    subtitle = paste("Number of songs used:", nrow(song_year_data))
-  ) +
-  theme_minimal(base_size = 11)
-```
-
-```{r}
-music |>
-  summarise(
-    across(
-      c(
-        artist.location,
-        release.name,
-        song.title,
-        song.year,
-        artist.familiarity,
-        artist.hotttnesss
-      ),
-      ~ sum(is.na(.x) | .x == 0)
-    )
-  ) |>
-  pivot_longer(
-    everything(),
-    names_to = "column",
-    values_to = "placeholder_rows"
-  )
-```
-
-```{r}
-music |>
-  mutate(
-    artist.latitude = replace_na(artist.latitude, 0),
-    artist.longitude = replace_na(artist.longitude, 0)
-  ) |>
-  distinct(artist.id, artist.latitude, artist.longitude) |>
-  mutate(
-    coordinate_status = if_else(
-      artist.latitude == 0 & artist.longitude == 0,
-      "Placeholder coordinates",
-      "Usable coordinates"
-    )
-  ) |>
-  count(coordinate_status, name = "artists")
-```
-
-```{r}
-artist_locations <- music |>
-  filter(
-    !is.na(artist.latitude),
-    !is.na(artist.longitude),
-    artist.latitude != 0 | artist.longitude != 0,
-    !is.na(song.year),
-    song.year != 0
-  ) |>
-  distinct(artist.id, artist.latitude, artist.longitude, song.year)
-
-ggplot() +
-  borders("world", colour = "gray70", fill = "gray95") +
-  geom_point(
-    data = artist_locations,
-    aes(
-      x = artist.longitude,
-      y = artist.latitude,
-      color = song.year
-    ),
-    alpha = 0.35,
-    size = 1
-  ) +
-  scale_color_viridis_c(name = "Song year") +
-  coord_fixed(1.3) +
-  labs(
-    title = "Artist locations colored by song year",
-    subtitle = "Colors show the year of each song; rows with song.year equal to 0 are excluded.",
-    x = "Longitude",
-    y = "Latitude"
-  ) +
-  theme_minimal(base_size = 11)
-```
+#
+#
+#
+#
